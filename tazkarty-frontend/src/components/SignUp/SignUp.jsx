@@ -6,14 +6,20 @@ const SignUp = () => {
   const [username , Setusername] = useState(""); 
   const [email , Setemail] = useState(""); 
   const [password , Setpassword] = useState(""); 
-  const [password2 , Setpassword2] = useState(""); 
+  const [password2 , Setpassword2] = useState("");
+  const[role , Setrole] = useState("user"); 
+
+  const handleRoleChange = (e) => {
+    Setrole(e.target.value);
+  }
 
   const handleSubmit = async (e) => {
     const DataToSend = {
       username : username,
       email : email,
       password : password,
-      password2 : password2
+      password2 : password2,
+      role : role
     }
     e.preventDefault();
     try {
@@ -73,6 +79,27 @@ const SignUp = () => {
        <button type="submit">Submit</button>
 
 
+
+      <label>
+        <input
+          type="radio"
+          name="role"
+          value="user"
+          checked={role === 'user'}
+          onChange={handleRoleChange}
+        />
+        User
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="role"
+          value="organization"
+          checked={role === 'organization'}
+          onChange={handleRoleChange}
+        />
+        </label>
 
 
 
