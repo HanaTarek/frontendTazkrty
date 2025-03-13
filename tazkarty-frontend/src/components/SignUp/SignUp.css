@@ -1,0 +1,21 @@
+.modal-title {
+    margin-bottom: 0;
+    line-height: var(--bs-modal-title-line-height);}
+h1{
+    font-size: 1.6rem;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    font-family: 'PP Fragment', sans-serif;
+    font-size: 2.25rem;
+    text-transform: capitalize;
+    line-height: 2.25rem;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
