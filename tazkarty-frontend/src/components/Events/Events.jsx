@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./Events.css";
 import Date_Time from '../date_time/Date_Time';
 import Organizers from '../Organizers/Organizers';
 import Navbar from "../Navbar/Navbar";
 import Image from "../Image/Image";
-import Locations from "../Locations/Locations";
 import Tickets from "../Tickets/Tickets";
+import Locations from "../Locations/Locations";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
-
+import styles from "./Events.css";
 const Events = () => {
-    const { eventname } = useParams();
+    const {eventname } = useParams(); // Get eventname from the URL
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    
     useEffect(() => {
-       
-        axios.get(`http://127.0.0.1:8000/api/event/${eventname}`)
+        // Fetch event data from Django API using eventname
+        axios.get(`http://127.0.0.1:8000/events/${eventname}/`)
             .then(response => {
                 setEvent(response.data);
                 setLoading(false);
@@ -26,15 +26,17 @@ const Events = () => {
                 setError(error.message);
                 setLoading(false);
             });
-    }, [eventname]);
+    }, [eventname]); // Fetch data whenever eventname changes
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
+    if (!event) return <div>No event data found.</div>;
+
     return (
-        <div className="general">
+        <div className="general" >
             <Navbar />
             <Image image={event.eventPhoto} />
-            <Date_Time  title={event.title}time={event.date_time} />
+            <Date_Time time={event.date_time} />
             <div className="hero">
                 <Organizers name={event.organizer_name} />
                 <Locations link={event.location} name={event.address} />
@@ -48,5 +50,4 @@ const Events = () => {
     );
 };
 
- 
 export default Events;
