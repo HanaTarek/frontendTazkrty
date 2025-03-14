@@ -9,9 +9,11 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<EventsContainer />}/>
+       
           <Route path="signup" element={<SignUp />} />
           <Route path="*" element={<EventsContainer />} />
+          <Route path="/" element={<Body />} />
+          <Route path="/events/:eventname" element={<Events />} /> 
       </Routes>
     </BrowserRouter>
   );
