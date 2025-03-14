@@ -4,9 +4,9 @@ import './SignUp.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
 import { Input, initMDB } from "mdb-ui-kit";
 
-initMDB({ Input });
+
 const SignUp = () => {
-  
+  initMDB({ Input });
   const [username , Setusername] = useState(""); 
   const [email , Setemail] = useState(""); 
   const [password , Setpassword] = useState(""); 
@@ -126,7 +126,7 @@ const SignUp = () => {
                   </label>
                 </div>
 
-                                <div class="col-md-6 mb-4">
+                  <div class="col-md-6 mb-4">
 
                   <h6 class="mb-2 pb-1">Role: </h6>
 
