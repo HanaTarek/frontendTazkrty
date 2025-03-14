@@ -1,3 +1,6 @@
+.events-container {
+    z-index: 1;
+}
 .modal-title {
     margin-bottom: 0;
     line-height: var(--bs-modal-title-line-height);}
@@ -24,18 +27,18 @@ h1{
   background: rgba(255, 191, 0, 0.1); /* Reduced alpha to 0.1 */
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(255, 140, 0, 0.5), rgba(243, 233, 122, 0.5));
+  background: -webkit-linear-gradient(to right,  rgba(255, 140, 0, 0.4), rgba(243, 233, 122, 0.4));
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(255, 140, 0, 0.5), rgba(243, 233, 122, 0.5));
+  background: linear-gradient(to right, rgba(255, 140, 0, 0.4), rgba(243, 233, 122, 0.4));
 }
 
 .gradient-custom-4 {
   /* fallback for old browsers */
-  background: rgba(255, 191, 0, 0.1); /* Reduced alpha to 0.1 */
+  background: rgba(255, 191, 0, 0.071); /* Reduced alpha to 0.1 */
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(255, 140, 0, 0.7), rgba(243, 233, 122, 0.7), rgba(255, 48, 0, 0.7));
+  background: -webkit-linear-gradient(to right, rgba(255, 140, 0, 0.4), rgba(243, 233, 122, 0.4));
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, rgba(255, 140, 0, 0.7), rgba(243, 233, 122, 0.7), rgba(255, 48, 0, 0.7));

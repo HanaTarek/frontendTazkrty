@@ -42,12 +42,24 @@ const SignUp = () => {
 
   return (
     <div>
+      <EventsContainer></EventsContainer>
 
 <section
       style={{
         backgroundColor: 'transparent',
         border: '1px solid rgba(255, 255, 255, 0.2)', 
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+        position: 'fixed', 
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1000, 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        display: 'flex', 
+        justifyContent: 'center',
+        alignItems: 'center',
+    
       }}
     
 >
