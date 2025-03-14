@@ -7,7 +7,7 @@ const UpcomingEventCard = (props) => {
       <img src={props.image}  width={200} height={150} alt="event" />
       <h2>{props.name}</h2>
       <p>Date: {props.date}</p>
-      <p>Location: {props.location}</p>
+      <a href ={props.location}> Location </a>
     </div>
   );
 };

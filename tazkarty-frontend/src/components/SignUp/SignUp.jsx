@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignUp.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
+import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
 
 
@@ -42,7 +43,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <EventsContainer></EventsContainer>
+      <Body></Body>
 
 <section
       style={{
