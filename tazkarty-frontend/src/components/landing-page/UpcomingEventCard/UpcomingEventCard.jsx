@@ -1,14 +1,27 @@
 import React from 'react';
-import './UpcomingEventCard.css';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
-const UpcomingEventCard = (props) => {
+const UpcomingEventCard = ({ image, name, date, onClick }) => {
   return (
-    <div className={props.className}>
-      <img src={props.image}  width={200} height={150} alt="event" />
-      <h2>{props.name}</h2>
-      <p>Date: {props.date}</p>
-      <p>Location: {props.location}</p>
-    </div>
+    <Card onClick={onClick} style={{ cursor: 'pointer' }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={image}
+        alt={name}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {date}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 
