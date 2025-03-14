@@ -1,58 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import UpcomingEventCard from '../landing-page/UpcomingEventCard/UpcomingEventCard';
+import axios from "axios";
+
+const eventsAPI_URL = "http://127.0.0.1:8000/events/";
 
 const EventsContainer = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    axios.get(eventsAPI_URL)
+      .then(response => {
+        setEvents(response.data);
+        setLoading(false);
+        console.log("Events loaded:", response.data);
+      })
+  }, []);
+  
+  if (loading) {
+    return <div>Loading events...</div>;
+  }
+  
   return (
     <Grid
       container
       direction="row"
-      spacing={3} // Adds space between grid items
+      spacing={3}
       sx={{
         justifyContent: "flex-start",
         alignItems: "center",
         padding: "20px"
       }}
     >
-      <Grid item xs={12} sm={6} md={4}>
-        <UpcomingEventCard 
-          className="event-card"
-          image="https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/f48a0503ca5c5d7779280bad73529a30.png"
-          name="Comedy Show"
-          date="28/02/2025"
-          location="Zayed"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <UpcomingEventCard 
-          className="event-card"
-          image="https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/f49eb3c44d7e77e53841466bb178c887.jpg"
-          name="Musical Show"
-          date="01/03/2025"
-          location="Korba"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <UpcomingEventCard 
-          className="event-card"
-          image="https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/f48a0503ca5c5d7779280bad73529a30.png"
-          name="Art Exhibition"
-          date="05/03/2025"
-          location="Downtown"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <UpcomingEventCard 
-          className="event-card"
-          image="https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/f49eb3c44d7e77e53841466bb178c887.jpg"
-          name="Tech Workshop"
-          date="10/03/2025"
-          location="New Cairo"
-        />
-      </Grid>
+      {events.length > 0 ? (
+        events.map((event) => (
+          <Grid item xs={12} sm={6} md={4} key={event.id}>
+            <UpcomingEventCard 
+              className="event-card"
+              image={event.eventPhoto }
+              name={event.title}
+              date={new Date(event.date_time).toLocaleDateString() }
+             
+            />
+          </Grid>
+        ))
+      ) : (
+        <Grid item xs={12}>
+          <div>No events found. Please check back later.</div>
+        </Grid>
+      )}
     </Grid>
   );
 };
