@@ -4,6 +4,7 @@ import SignUp from './components/SignUp/SignUp.jsx';
 import Signin from './components/Signin/Signin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Body from './components/landing-page/Body/Body.jsx';
+import Events from './components/Events/Events.jsx';
 // import Signin from './components/Signin/Signin';
 
 function App() {
@@ -12,11 +13,11 @@ function App() {
 
     <BrowserRouter>
       <Routes>
+          <Route path="/" element={<Body />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="Signin" element={<Signin />} />
-          <Route path="*" element={<EventsContainer />} />
-          <Route path="/" element={<Body />} />
           <Route path="/events/:eventname" element={<Events />} /> 
+          <Route path="*" element={<Body />} />
       </Routes>
     </BrowserRouter>
   );

@@ -5,6 +5,7 @@ import EventsContainer from '../EventsContainer/EventsContainer';
 import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -14,6 +15,7 @@ const SignUp = () => {
   const [password , Setpassword] = useState(""); 
   const [password2 , Setpassword2] = useState("");
   const[role , Setrole] = useState("user"); 
+  const navigation = useNavigate();
 
   const handleRoleChange = (e) => {
     Setrole(e.target.value);
@@ -36,6 +38,7 @@ const SignUp = () => {
       Setemail('');
       Setpassword('');
       Setpassword2('');
+      navigation('/Signin');
     } catch (error) {
 
       console.error('Registration failed:', error.response.data);
@@ -172,7 +175,7 @@ const SignUp = () => {
 
 
                 <div className="d-flex justify-content-center">
-                <Link to="/Signin">
+                {/* <Link to="/Signin"> */}
                   <button
                       type="submit"
                       data-mdb-button-init
@@ -181,7 +184,7 @@ const SignUp = () => {
                     >
                       Register
                     </button>
-                </Link>
+                {/* </Link> */}
                 </div>
 
                 <p className="text-center text-muted mt-5 mb-0">

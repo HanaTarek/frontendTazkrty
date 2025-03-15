@@ -4,7 +4,7 @@ import './Signin.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
 import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
-
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   initMDB({ Input });
@@ -12,6 +12,7 @@ const Signin = () => {
   const [email , Setemail] = useState(""); 
   const [password , Setpassword] = useState(""); 
   const [Token , SetToken] = useState("");
+  const navigate = useNavigate();
   
 
   // const handleRoleChange = (e) => {
@@ -35,6 +36,7 @@ const Signin = () => {
       Setemail('');
       Setpassword('');
       SetToken('');
+      navigate('/');
     } catch (error) {
 
       console.error('Login failed:', error.response.data);
@@ -121,7 +123,7 @@ const Signin = () => {
                     data-mdb-button-init
                     data-mdb-ripple-init
                     className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                    onClick={() => window.location.href = "http://localhost:3000/"}
+                    // onClick={() => window.location.href = "http://localhost:3000/"}
                   >
                     Login
                   </button>
