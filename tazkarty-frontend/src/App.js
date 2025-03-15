@@ -12,11 +12,11 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Body />}/>
-          <Route path="/event-details/:eventId" element={<Body />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="Signin" element={<Signin />} />
           <Route path="*" element={<EventsContainer />} />
+          <Route path="/" element={<Body />} />
+          <Route path="/events/:eventname" element={<Events />} /> 
       </Routes>
     </BrowserRouter>
   );
