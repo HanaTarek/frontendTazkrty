@@ -121,6 +121,7 @@ const Signin = () => {
                     data-mdb-button-init
                     data-mdb-ripple-init
                     className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    onClick={() => window.location.href = "http://localhost:3000/"}
                   >
                     Login
                   </button>

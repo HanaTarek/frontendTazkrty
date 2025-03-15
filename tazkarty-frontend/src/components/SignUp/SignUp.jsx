@@ -4,6 +4,7 @@ import './SignUp.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
 import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
+import { Link } from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -171,14 +172,16 @@ const SignUp = () => {
 
 
                 <div className="d-flex justify-content-center">
+                <Link to="/Signin">
                   <button
-                    type="submit"
-                    data-mdb-button-init
-                    data-mdb-ripple-init
-                    className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                  >
-                    Register
-                  </button>
+                      type="submit"
+                      data-mdb-button-init
+                      data-mdb-ripple-init
+                      className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    >
+                      Register
+                    </button>
+                </Link>
                 </div>
 
                 <p className="text-center text-muted mt-5 mb-0">
