@@ -22,6 +22,7 @@ const UpcomingEventCard = ({ image, name, date, onClick }) => {
         </Typography>
       </CardContent>
     </Card>
+
   );
 };
 

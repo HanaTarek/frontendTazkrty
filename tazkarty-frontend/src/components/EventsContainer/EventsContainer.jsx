@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import UpcomingEventCard from '../landing-page/UpcomingEventCard/UpcomingEventCard';
+import './EventsContainer.css';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ const EventsContainer = () => {
   }, []);
   
   if (loading) {
-    return <div>Loading events...</div>;
+    return (<div>Loading events...</div>);
   }
   
   return (
@@ -38,6 +39,7 @@ const EventsContainer = () => {
         padding: "20px"
       }}
     >
+
       {events.map((event, index) => {
         if (!event.title) {
           console.error("Eventname is missing for event:", event);
