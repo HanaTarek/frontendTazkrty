@@ -26,8 +26,8 @@ const EventsContainer = () => {
   
   if (loading) {
     return (
-    <div style={{ border: 'none' }}>
-        <Button loading loadingIndicator="Loading…" variant="outlined " >
+    <div>
+        <Button loading loadingPosition="start" >
           Loading events...
         </Button>
     </div>);
