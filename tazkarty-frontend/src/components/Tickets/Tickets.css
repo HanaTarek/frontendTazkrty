@@ -1,0 +1,39 @@
+/* Custom orange button */
+.btn-custom {
+    background-color: rgb(255, 204, 0); /* Orange color */
+    border: none; /* Remove default border */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding for better size */
+    font-size: 1rem; /* Font size */
+    border-radius: 25px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Hover effect for the button */
+.btn-custom:hover {
+    background-color: #ff6347; /* Darker orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Active (click) effect for the button */
+.btn-custom:active {
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow */
+}
+
+/* Optional: Add some fancy styling to the card */
+.ticket {
+    border: none; /* Remove default border */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.ticket:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}

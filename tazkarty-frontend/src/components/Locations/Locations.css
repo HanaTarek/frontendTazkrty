@@ -1,0 +1,40 @@
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* border: 3px solid black; */
+    border-radius: 35px;
+    width: 40vw; /* Adjust width to fit side by side */
+    height: 20vh;
+    padding-left: 20px;
+    background-color: rgb(252, 252, 252);
+    transition: 0.3s;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 10px 10px 8px #090909;
+}
+h4{
+   
+}
+ .venu {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+} 
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
