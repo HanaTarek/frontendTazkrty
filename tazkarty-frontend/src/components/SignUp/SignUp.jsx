@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignUp.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
-import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -47,7 +46,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <Body></Body>
+      <EventsContainer></EventsContainer>
 
 <section
       style={{

@@ -4,9 +4,17 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-const UpcomingEventCard = ({ image, name, date, onClick }) => {
+const UpcomingEventCard = ({ image, name, date, address, onClick }) => {
   return (
-    <Card onClick={onClick} style={{ cursor: 'pointer' }}>
+    <Card onClick={onClick} 
+    sx={{
+
+      borderRadius: "25px",
+      boxShadow: 3, 
+      textAlign: "left",
+      maxWidth: 345,
+      margin: "auto" 
+    }}>
       <CardMedia
         component="img"
         height="140"
@@ -19,6 +27,9 @@ const UpcomingEventCard = ({ image, name, date, onClick }) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {date}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {address}
         </Typography>
       </CardContent>
     </Card>

@@ -3,24 +3,27 @@ import EventsContainer from './components/EventsContainer/EventsContainer.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Signin from './components/Signin/Signin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Body from './components/landing-page/Body/Body.jsx';
 import Events from './components/Events/Events.jsx';
-// import Signin from './components/Signin/Signin';
+import Header from './components/Header/Header.jsx';
+import ContactContainer from './components/ContactContainer/ContactContainer.jsx';
 
 function App() {
   return (
+    <BrowserRouter >
+      <div className="App">
+        <Header />
 
-
-    <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<Body />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="Signin" element={<Signin />} />
-          <Route path="/events/:eventname" element={<Events />} /> 
-          <Route path="*" element={<Body />} />
-      </Routes>
+            <Routes>
+                <Route path="/" element={<EventsContainer />} />
+                <Route path="signup" element={<SignUp />} />
+                <Route path="Signin" element={<Signin />} />
+                <Route path="/events/:eventname" element={<Events />} /> 
+                <Route path="*" element={<EventsContainer />} />
+            </Routes>
+        <ContactContainer />
+      </div>
     </BrowserRouter>
-  );
+    );
 }
 
 export default App;

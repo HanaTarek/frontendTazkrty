@@ -8,7 +8,7 @@ import Image from "../Image/Image";
 import Tickets from "../Tickets/Tickets";
 import Locations from "../Locations/Locations";
 import axios from "axios";
-import styles from "./Events.css";
+
 const Events = () => {
     const {eventname } = useParams(); // Get eventname from the URL
     const [event, setEvent] = useState(null);
@@ -34,7 +34,6 @@ const Events = () => {
 
     return (
         <div className="general" >
-            <Navbar />
             <Image image={event.eventPhoto} />
             <Date_Time time={event.date_time} />
             <div className="hero">

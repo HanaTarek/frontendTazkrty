@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import UpcomingEventCard from '../landing-page/UpcomingEventCard/UpcomingEventCard';
-import './EventsContainer.css';
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const eventsAPI_URL = "http://127.0.0.1:8000/events/";
 
@@ -25,7 +25,12 @@ const EventsContainer = () => {
   }, []);
   
   if (loading) {
-    return (<div>Loading events...</div>);
+    return (
+    <div style={{ border: 'none' }}>
+        <Button loading loadingIndicator="Loading…" variant="outlined " >
+          Loading events...
+        </Button>
+    </div>);
   }
   
   return (
@@ -52,8 +57,11 @@ const EventsContainer = () => {
                 className="event-card"
                 image={event.eventPhoto || "https://via.placeholder.com/300"} // Fallback image
                 name={event.title || "No Title"}
-                date={event.date_time ? new Date(event.date_time).toLocaleDateString() : "No Date"}
-                location={event.location || "No Location"}
+                date={event.date_time 
+                  ? `${new Date(event.date_time).toLocaleDateString()} | ${new Date(event.date_time).toLocaleTimeString()}`
+                  : "No Date"}
+                
+                address={event.address || "No Address"}
               />
             </Link>
           </Grid>

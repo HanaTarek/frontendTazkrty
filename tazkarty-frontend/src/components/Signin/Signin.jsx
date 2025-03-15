@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Signin.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
-import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
 import { useNavigate } from 'react-router-dom';
 
@@ -45,7 +44,7 @@ const Signin = () => {
 
   return (
     <div>
-      <Body></Body>
+      <EventsContainer></EventsContainer>
 
 <section
       style={{
