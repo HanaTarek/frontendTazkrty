@@ -42,7 +42,7 @@ const EventsContainer = () => {
               image={event.eventPhoto}
               name={event.title}
               date={new Date(event.date_time).toLocaleDateString()}
-              location={event.location}
+              address={event.address}
             />
           </a>
         </Grid>
