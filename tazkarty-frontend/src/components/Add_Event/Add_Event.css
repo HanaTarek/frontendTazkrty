@@ -1,0 +1,90 @@
+/* === الصفحة الرئيسية لـ InsertEventPage === */
+.insert-event-page {
+  font-family: Arial, sans-serif;
+  /* background: linear-gradient(to right, #ffcc99, rgb(255, 198, 167), #ff9966); */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+}
+
+
+
+.insert-event-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 100vh;
+}
+
+/* === العنوان === */
+.insert-event-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* === إدخال البيانات === */
+.insert-event-input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+textarea.insert-event-input {
+  height: 80px;
+  resize: none;
+}
+
+/* === أزرار التحكم === */
+.insert-event-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.insert-event-btn:hover {
+  opacity: 0.8;
+}
+
+.insert-event-btn-submit {
+  background: #28a745;
+  color: white;
+}
+
+.insert-event-btn-add {
+  background: #007bff;
+  color: white;
+}
+
+.insert-event-btn-remove {
+  background: #dc3545;
+  color: white;
+}
+
+/* === تصميم صندوق التذاكر === */
+.insert-event-ticket {
+  background: #ffe6cc;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* === تصميم خاص بالموبايل === */
+@media (max-width: 600px) {
+  .insert-event-container {
+      width: 95%;
+  }
+}
