@@ -10,7 +10,7 @@ const Signin = () => {
  
   const [email , Setemail] = useState(""); 
   const [password , Setpassword] = useState(""); 
-  const [Token , SetToken] = useState("");
+  const [access_token , Setaccess_token] = useState("");
   const navigate = useNavigate();
   
 
@@ -23,18 +23,25 @@ const Signin = () => {
       
       email : email,
       password : password,
-      Token : Token,
+      access_token : access_token,
       
     }
     e.preventDefault();
     try {
-      console.log("Data being sent:", DataToSend);
+      // console.log("Data being sent:", DataToSend);
       const response = await axios.post('http://127.0.0.1:8000/users/login/',  DataToSend ,{ headers: {'Content-Type': 'application/json' },});
       console.log('login successful:', response.data);
+       // ✅ Extract response data
+      const { access_token, refresh_token, username, role, email } = response.data;
+
+      // ✅ Store tokens and user info in localStorage
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("refresh_token", refresh_token);
+      localStorage.setItem("user", JSON.stringify({ email, username, role }));
       
       Setemail('');
       Setpassword('');
-      SetToken('');
+      Setaccess_token('');
       navigate('/');
     } catch (error) {
 
