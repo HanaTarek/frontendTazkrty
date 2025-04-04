@@ -79,7 +79,7 @@ const Signin = () => {
           <div className="card" style={{ borderRadius: "15px" }}>
             <div className="card-body p-5">
 
-              <h2 className="text-uppercase text-center mb-5 modal-title" id="uniqueFlipModalLabel">Login an account</h2>
+              <h2 className=" text-center mb-5 modal-title" id="uniqueFlipModalLabel">Login an account</h2>
 
               <form onSubmit={handleSubmit} >
 
