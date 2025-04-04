@@ -77,7 +77,7 @@ const SignUp = () => {
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-12 col-md-9 col-lg-7 col-xl-5">
           <div className="card" style={{ borderRadius: "15px" }}>
-            <div className="card-body p-3">
+            <div className="card-body p-2">
 
               <h2 className=" text-center mb-5 modal-title" id="uniqueFlipModalLabel">Create an account</h2>
 
