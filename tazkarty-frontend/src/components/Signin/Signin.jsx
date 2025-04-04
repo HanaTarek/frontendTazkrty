@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Signin.css';
 import EventsContainer from '../EventsContainer/EventsContainer';
-import Body from '../landing-page/Body/Body';
 import { Input, initMDB } from "mdb-ui-kit";
-
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   initMDB({ Input });
  
   const [email , Setemail] = useState(""); 
   const [password , Setpassword] = useState(""); 
-  const [Token , SetToken] = useState("");
+  const [access_token , Setaccess_token] = useState("");
+  const navigate = useNavigate();
   
 
   // const handleRoleChange = (e) => {
@@ -23,18 +23,26 @@ const Signin = () => {
       
       email : email,
       password : password,
-      Token : Token,
+      access_token : access_token,
       
     }
     e.preventDefault();
     try {
-      console.log("Data being sent:", DataToSend);
+      // console.log("Data being sent:", DataToSend);
       const response = await axios.post('http://127.0.0.1:8000/users/login/',  DataToSend ,{ headers: {'Content-Type': 'application/json' },});
       console.log('login successful:', response.data);
+       // ✅ Extract response data
+      const { access_token, refresh_token, username, role, email } = response.data;
+
+      // ✅ Store tokens and user info in localStorage
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("refresh_token", refresh_token);
+      localStorage.setItem("user", JSON.stringify({ email, username, role }));
       
       Setemail('');
       Setpassword('');
-      SetToken('');
+      Setaccess_token('');
+      navigate('/');
     } catch (error) {
 
       console.error('Login failed:', error.response.data);
@@ -43,7 +51,7 @@ const Signin = () => {
 
   return (
     <div>
-      <Body></Body>
+      <EventsContainer></EventsContainer>
 
 <section
       style={{
@@ -71,7 +79,7 @@ const Signin = () => {
           <div className="card" style={{ borderRadius: "15px" }}>
             <div className="card-body p-5">
 
-              <h2 className="text-uppercase text-center mb-5 modal-title" id="uniqueFlipModalLabel">Login an account</h2>
+              <h2 className=" text-center mb-5 modal-title" id="uniqueFlipModalLabel">Login an account</h2>
 
               <form onSubmit={handleSubmit} >
 
@@ -121,6 +129,7 @@ const Signin = () => {
                     data-mdb-button-init
                     data-mdb-ripple-init
                     className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    // onClick={() => window.location.href = "http://localhost:3000/"}
                   >
                     Login
                   </button>

@@ -1,0 +1,26 @@
+.round{
+    width: 80vw;
+    height: 500;
+    border-radius: 35px;
+}
+.hero{
+    display: flex;
+    flex-direction: row;  
+    justify-content: flex-start;  
+    align-items: flex-start;
+    
+    /* border: 2px black solid; */
+    border-radius: 35px;
+    width:80vw;
+    align-content: center;
+    transition: 0.3s;
+    margin-left: 120px;
+    margin-top: 0px;
+     transition: transform 0.3s, box-shadow 0.3s;
+}
+.tickets{
+    display: flex;
+    flex-direction: row;
+    width:80vw;
+    margin-left: 120px;
+}

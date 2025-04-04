@@ -1,0 +1,22 @@
+.datetime{
+    display: flex;
+    flex-direction: column;  
+    justify-content: flex-start;  
+    align-items: flex-start;
+    background-color: rgb(252, 252, 252);
+    /* border: 2px black solid; */
+    border-radius: 35px;
+    width:80vw;
+   
+    padding-left: 20px;
+    align-content: center;
+    transition: 0.3s;
+    margin-left: 120px;
+    margin-top: 10px;
+     transition: transform 0.3s, box-shadow 0.3s;
+  
+}
+.datetime:hover{
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 10px 10px 8px #090909; 
+}

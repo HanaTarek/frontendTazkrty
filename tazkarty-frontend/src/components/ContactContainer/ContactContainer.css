@@ -1,0 +1,16 @@
+#contact-container {
+    font-family:  Lucida Console    ;
+    color: #000000;
+    font-size: 16px;
+
+  }
+  
+  
+  #contact-container p {
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+  
+
+  

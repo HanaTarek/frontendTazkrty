@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import UpcomingEventCard from '../landing-page/UpcomingEventCard/UpcomingEventCard';
-import './EventsContainer.css';
 import axios from "axios";
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const eventsAPI_URL = "http://127.0.0.1:8000/events/";
 
@@ -17,10 +18,19 @@ const EventsContainer = () => {
         setLoading(false);
         console.log("Events loaded:", response.data);
       })
+      .catch(error => {
+        console.error("Error fetching events:", error);
+        setLoading(false);
+      });
   }, []);
   
   if (loading) {
-    return (<div>Loading events...</div>);
+    return (
+    <div>
+        <Button loading loadingPosition="start" >
+          Loading events...
+        </Button>
+    </div>);
   }
   
   return (
@@ -34,19 +44,29 @@ const EventsContainer = () => {
         padding: "20px"
       }}
     >
-      {events.map((event) => (
-        <Grid item xs={12} sm={6} md={4} key={event.id}>
-          <a href={`/event-details/${event.id}`} style={{ textDecoration: 'none' }}>
-            <UpcomingEventCard 
-              className="event-card"
-              image={event.eventPhoto}
-              name={event.title}
-              date={new Date(event.date_time).toLocaleDateString()}
-              location={event.location}
-            />
-          </a>
-        </Grid>
-      ))}
+
+      {events.map((event, index) => {
+        if (!event.title) {
+          console.error("Eventname is missing for event:", event);
+          return null; // Skip rendering this event
+        }
+        return (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Link to={`/events/${event.title}`} style={{ textDecoration: 'none' }}>
+              <UpcomingEventCard 
+                className="event-card"
+                image={event.eventPhoto || "https://via.placeholder.com/300"} // Fallback image
+                name={event.title || "No Title"}
+                date={event.date_time 
+                  ? `${new Date(event.date_time).toLocaleDateString()} | ${new Date(event.date_time).toLocaleTimeString()}`
+                  : "No Date"}
+                
+                address={event.address || "No Address"}
+              />
+            </Link>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };
