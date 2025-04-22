@@ -1,4 +1,4 @@
-import './signup.css';
+import './SignUp.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import EventsContainer from '../EventsContainer/EventsContainer';
