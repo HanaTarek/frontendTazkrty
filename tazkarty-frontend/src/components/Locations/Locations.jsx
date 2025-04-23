@@ -10,7 +10,7 @@ const Locations = (props) => {
                 <h5>{props.name}</h5>
             </span>
            
-            <a href={props.link} target="_blank" rel="noopener noreferrer">  <BiSolidMap aria-label="Map icon" />Google Maps</a>
+            <a href={props.link} target="_blank" rel="noopener noreferrer" className="link">  <BiSolidMap aria-label="Map icon" />Google Maps</a>
         </div>
     );
 };

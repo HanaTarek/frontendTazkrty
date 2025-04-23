@@ -1,19 +1,15 @@
 .org {
     background-color: rgb(252, 252, 252);
-    /* border: 2px solid black; */
     border-radius: 35px;
-    width: 40vw; /* Adjust width to fit side by side */
-    height: 20vh;
-    padding-left: 20px;
+    width: 40vw; /* Default width for larger screens */
+    height: 20vh; /* Default height for larger screens */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    transition: 0.3s;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 0px;
     transition: transform 0.3s, box-shadow 0.3s;
+    margin: 10px auto; /* Center the component horizontally */
 }
 
 .org:hover {
@@ -27,8 +23,59 @@
     color: #555;
 }
 
-h1 {
+.org h1 {
     margin: 0;
     font-size: 1.5rem;
     color: #000;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .org {
+        width: 50vw; /* Increase width for smaller screens */
+        height: 18vh; /* Adjust height */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .org h1 {
+        font-size: 1.4rem; /* Slightly reduce font size for headings */
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .org {
+        width: 70vw; /* Further increase width for mobile */
+        height: 15vh; /* Adjust height */
+        padding: 10px; /* Further reduce padding */
+        border-radius: 25px; /* Slightly reduce border radius */
+    }
+
+    .org h1 {
+        font-size: 1.3rem; /* Further reduce font size for headings */
+    }
+
+    .orga {
+        font-size: 0.9rem; /* Reduce font size for subheadings */
+    }
+}
+
+/* For very small mobile devices */
+@media (max-width: 480px) {
+    .org {
+        width: 90vw; /* Full width for very small screens */
+        height: 12vh; /* Adjust height */
+        border-radius: 20px; /* Further reduce border radius */
+        margin: 5px auto; /* Reduce margin */
+    }
+
+    .org h1 {
+        font-size: 1.2rem; /* Further reduce font size for headings */
+    }
+
+    .orga {
+        font-size: 0.8rem; /* Further reduce font size for subheadings */
+    }
 }
