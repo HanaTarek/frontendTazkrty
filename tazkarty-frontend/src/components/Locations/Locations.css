@@ -3,38 +3,107 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    /* border: 3px solid black; */
     border-radius: 35px;
-    width: 40vw; /* Adjust width to fit side by side */
-    height: 20vh;
-    padding-left: 20px;
+    width: 40vw; /* Default width for larger screens */
+    height: 20vh; /* Default height for larger screens */
+    padding: 20px;
     background-color: rgb(252, 252, 252);
-    transition: 0.3s;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    margin: 10px auto; /* Center the component horizontally */
 }
 
 .location:hover {
     transform: translateY(-5px); /* Slight lift effect */
     box-shadow: 10px 10px 8px #090909;
 }
-h4{
-   
-}
- .venu {
+
+.venu {
     margin: 0;
     font-size: 1rem;
     color: #555;
-} 
+}
 
-a {
+.location h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.link {
     color: #0077cc;
     text-decoration: none;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
 }
 
-a:hover {
+.link:hover {
     text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .location {
+        width: 50vw; /* Increase width for smaller screens */
+        height: 18vh; /* Adjust height */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .location h5 {
+        font-size: 1.1rem; /* Slightly reduce font size for headings */
+    }
+    .link{
+        color: #0077cc;
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .location {
+        width: 70vw; /* Further increase width for mobile */
+        height: 15vh; /* Adjust height */
+        padding: 10px; /* Further reduce padding */
+        border-radius: 25px; /* Slightly reduce border radius */
+    }
+
+    .location h5 {
+        font-size: 1rem; /* Further reduce font size for headings */
+    }
+
+    .venu {
+        font-size: 0.9rem; /* Reduce font size for subheadings */
+    }
+    .link{
+        color: #0077cc;
+    }
+}
+
+/* For very small mobile devices */
+@media (max-width: 480px) {
+    .location {
+        width: 90vw; /* Full width for very small screens */
+        height: 12vh; /* Adjust height */
+        border-radius: 20px; /* Further reduce border radius */
+        margin: 5px auto; /* Reduce margin */
+    }
+
+    .location h5 {
+        font-size: 0.9rem; /* Further reduce font size for headings */
+    }
+
+    .venu {
+        font-size: 0.8rem; /* Further reduce font size for subheadings */
+    }
+
+    a {
+        font-size: 0.9rem;
+        color: #0077cc; /* Reduce font size for link */
+    }
+    .link{
+        color: #0077cc;
+    }
 }
