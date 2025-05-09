@@ -1,31 +1,32 @@
-section{
-
-    background-Color: 'transparent'!important;
-    border: '1px solid rgba(255, 255, 255, 0.2)'!important;
-    box-Shadow: '0 4px 8px rgba(0, 0, 0, 0.1)'!important;
-    position: 'fixed'!important;
+section {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    position: fixed !important;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-Index: 1000;
-    display: 'flex'!important;
-    justify-Content: 'center'!important;
-    align-Items: 'center'!important;
-
+    z-index: 1000;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
-form{
+
+form {
     width: 90%;
     align-self: center;
     padding: 8px;
     margin: 0 auto; 
     box-sizing: border-box;
 }
-.form-outline{
-height:50px;
+
+.form-outline {
+    height: 50px;
 }
+
 .form-control {
-    font-size:3em; 
+    font-size: 3em; 
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     padding: 8px;
 }
@@ -35,47 +36,52 @@ height:50px;
     align-content: center;
     align-items: center;
 }
+
 .events-container {
     z-index: 1;
 }
+
 .modal-title {
-    margin-bottom: 1;
+    margin-bottom: 1rem;
     line-height: var(--bs-modal-title-line-height);
-    color: #4f4f4f!important;
+    color: #4f4f4f !important;
     display: block;
-    font-size: 2.5em!important;
+    font-size: 2.5em !important;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font-weight:bolder !important;
+    font-weight: bolder !important;
     line-height: 2.5rem;
-    font-family: Century ;
+    font-family: Century;
 }
+
 *, ::after, ::before {
     box-sizing: border-box;
 }
+
 .gradient-custom-3 {
-  /* fallback for old browsers */
-  background: rgba(249, 213, 194, 0.001); /* Reduced alpha to 0.1 */
+    /* fallback for old browsers */
+    background: rgba(249, 213, 194, 0.001); /* Reduced alpha to 0.1 */
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194, 0.4) ) !important;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194, 0.4)) !important;
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194,0.4) ) !important;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194,0.4)) !important;
 }
 
 .gradient-custom-4 {
-  /* fallback for old browsers */
-  background: rgba(249, 213, 194, 0.001); /* Reduced alpha to 0.1 */
+    /* fallback for old browsers */
+    background: rgba(249, 213, 194, 0.001); /* Reduced alpha to 0.1 */
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194,0.4) ) !important;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194,0.4)) !important;
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194,0.4) ) !important;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(315deg, rgba(255,245,236,0.4), rgba(249, 213, 194,0.4)) !important;
 }
+
 button,
 .btn-success {
     background: rgb(249, 213, 194) !important; 
@@ -83,38 +89,37 @@ button,
     box-shadow: rgb(238, 238, 238) !important;
     --mdb-btn-box-shadow: none !important; 
     --mdb-btn-box-shadow-state: none !important;
-    font-weight:bold !important;
-    font-size: 2.25rem;
+    font-weight: bold !important;
+    font-size: 1.25rem !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .btn:active {
-    background-color: rgb(249, 203, 178)!important;
+    background-color: rgb(249, 203, 178) !important;
     box-shadow: 0 5px #f5f5f5 !important;
     transform: translateY(4px);
     box-shadow: rgb(248, 205, 182) !important;
-     --mdb-btn-box-shadow: none !important;
+    --mdb-btn-box-shadow: none !important;
     --mdb-btn-box-shadow-state: none !important;
-    font-weight:bold !important;
+    font-weight: bold !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-
 }
-
 
 .checking {
     width: 100% !important;
     padding-top: 10px;
 }
-.role{
-    font-weight:600;
+
+.role {
+    font-weight: 600;
     font-size: 1rem;
 }
 
 .error-message {
     color: red !important;
-    font-size: 0.8rem!important; 
-    margin-top: 2px!important;
-    padding: 0!important;
-    line-height: 1!important; 
+    font-size: 0.8rem !important; 
+    margin-top: 2px !important;
+    padding: 0 !important;
+    line-height: 1 !important; 
     float: left !important;
 }

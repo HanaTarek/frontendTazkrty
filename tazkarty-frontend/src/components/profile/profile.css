@@ -1,0 +1,20 @@
+.edit-profile{
+    background-color: #000;
+    height:200px;
+}
+.card{
+    width: 45%;
+}
+.edit{
+    z-index: 1;
+}
+.country{
+    margin-top: 130px;
+}
+.imggg{
+    width: 150px;
+    z-index: 1;
+}
+.contain{
+    width: 100%;
+}
