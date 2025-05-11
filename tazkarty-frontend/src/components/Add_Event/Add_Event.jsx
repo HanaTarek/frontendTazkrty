@@ -103,7 +103,7 @@ const InsertEventPage = () => {
     <div className="insert-event-page">
       <div className="insert-event-container">
         <h2>Insert Event</h2>
-        {user?.role === "Organization" ? (
+        {user?.role === "Organization" || user?.role === "organization" ? (
           <form onSubmit={handleSubmit}>
             <input type="text" name="eventname" placeholder="Event Name" value={formData.eventname} onChange={handleChange} className="insert-event-input" required />
             <input type="text" name="organizer_name" placeholder="Organizer Name" value={formData.organizer_name} onChange={handleChange} className="insert-event-input" required />
