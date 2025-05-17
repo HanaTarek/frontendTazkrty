@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './History.css'
+import {
+  Card,
+  CardContent,
+  Typography,
+  Avatar,
+  Grid,
+  Container,
+  Box,
+} from '@mui/material';
 
 const History = () => {
   const [history, setHistory] = useState([]);
@@ -54,7 +63,23 @@ const History = () => {
 
   return (
     <div className="history-container">
-      <h2>Booking History</h2>
+      <Container maxWidth="md"
+      sx={{
+          display: 'flex',
+          alignItems: 'left',
+          justifyContent: 'left',
+          mb: 2,
+          gap: 3,
+          paddingLeft: '11rem',
+        }}>
+        <Grid container spacing={4} justifyContent="left">
+          <Grid item xs={12} sm={6}>
+            <Box display="flex" alignItems="left" gap={5}>
+              <Typography variant="h5">{'purchase History'}</Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
       {history.length > 0 ? (
         <table className="history-table">
           <thead>
@@ -68,7 +93,7 @@ const History = () => {
           <tbody>
             {history.map((item, index) => (
               <tr key={index}>
-                <td>{item.event_name}</td>
+                <td>{item.eventname}</td>
                 <td>{item.ticket_number}</td>
                 <td>{item.purchase_date}</td>
                 <td>{item.status}</td>

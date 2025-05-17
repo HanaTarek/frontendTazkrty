@@ -1,80 +1,145 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './profile.css';
+import History from '../History/History.jsx';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Avatar,
+  Grid,
+  Container,
+  Box,
+} from '@mui/material';
+import {
+  Email as EmailIcon,
+  Phone as PhoneIcon,
+  CalendarToday as CalendarIcon,
+  LocationOn as LocationIcon,
+  Wc as GenderIcon,
+} from '@mui/icons-material';
 
 const Profile = () => {
-  return (
-    <div>
-        <div class="container py-5 h-100 contain">
-            <div class="row d-flex justify-content-center">
-                <div class="col col-lg-9 col-xl-8">
-                        <div class="card">
-                                <div class="rounded-top text-white d-flex flex-row edit-profile" >
-                                            <div class="ms-4 mt-5 d-flex flex-column card">
-                                                <img 
-                                                    alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 imggg" />
-                                            </div>
-                                             <div class="ms-3 country">
-                                                <h5>Andy Horwitz</h5>
-                                                <p>New York</p>
-                                            </div>
-                                </div>
-                                 <div class="p-4 text-black bg-body-tertiary">
-                                            <div class="d-flex justify-content-end text-center py-1 text-body">
-                                            <div>
-                                                    <p class="mb-1 h5">253</p>
-                                                    <p class="small text-muted mb-0">Photos</p>
-                                                </div>
-                                                <div class="px-3">
-                                                    <p class="mb-1 h5">1026</p>
-                                                    <p class="small text-muted mb-0">Followers</p>
-                                                </div>
-                                                <div>
-                                                    <p class="mb-1 h5">478</p>
-                                                    <p class="small text-muted mb-0">Following</p>
-                                                </div>
-                                            </div>
-                                 </div>
-                                <div class="card-body p-4 text-black">
-                                    <div class="mb-5  text-body">
-                                    <p class="lead fw-normal mb-1">About</p>
-                                        <div class="p-4 bg-body-tertiary">
-                                            <p class="font-italic mb-1">Web Developer</p>
-                                            <p class="font-italic mb-1">Lives in New York</p>
-                                            <p class="font-italic mb-0">Photographer</p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mb-4 text-body">
-                                    <p class="lead fw-normal mb-0">Recent photos</p>
-                                    <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
-                                    </div>
-                                    <div class="row g-2">
-                                    <div class="col mb-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp" class="w-100 rounded-3" alt="image 1" />
-                                        
-                                    </div>
-                                    <div class="col mb-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp" alt="image 1"
-                                        class="w-100 rounded-3" />
-                                    </div>
-                                    </div>
-                                    <div class="row g-2">
-                                    <div class="col">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp" alt="image 1"
-                                        class="w-100 rounded-3" />
-                                    </div>
-                                        <div class="col">
-                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp" alt="image 1"
-                                            class="w-100 rounded-3" />
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
 
-    </div>
+
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Get user data from local storage
+        const storedUser = localStorage.getItem("user");
+        if (!storedUser) {
+          throw new Error("No user found. Please log in.");
+        }
+
+        const { email } = JSON.parse(storedUser);
+        if (!email) {
+          throw new Error("No email found in user data.");
+        }
+
+        // Fetch history from API
+        const response = await axios.get(`http://127.0.0.1:8000/users/profile/${email}/`, {
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        console.log("Response Data:", response.data);
+
+        // Check if response is JSON
+        if (typeof response.data === "object") {
+          setUserData(response.data || []);
+        } else {
+          throw new Error("Invalid response format. Expected JSON.");
+        }
+      } catch (err) {
+        console.error("Error fetching history:", err);
+        setError(err.message || "Error fetching history.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (loading) return <p>Loading profile...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+
+
+
+return (
+          <Box
+            sx={{
+              padding: '3rem 2rem',
+              borderRadius: '1rem',
+              textAlign: 'center',
+            }}
+          >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'left',
+          justifyContent: 'left',
+          mb: 4,
+          gap: 3,
+          paddingLeft: '11rem',
+        }}
+      >
+        <Avatar sx={{ width: 120,
+    height: 120,
+    fontSize: '48px',
+    fontWeight: 'bold',}}>
+          {userData.username.charAt(0).toUpperCase()}
+        </Avatar>
+
+        <Box textAlign="left">
+          <Typography variant="h4" fontWeight="bold">
+            {userData.username}
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Member Since {userData.memberSince}
+          </Typography>
+        </Box>
+      </Box>
+
+      <Container maxWidth="md">
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            <Box display="flex" alignItems="center" gap={1}>
+              <PhoneIcon />
+              <Typography variant="h6">{userData.phone_number}</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box display="flex" alignItems="center" gap={1}>
+              <GenderIcon />
+              <Typography variant="h6" textTransform="capitalize">
+                {userData.gender}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box display="flex" alignItems="center" gap={1}>
+              <LocationIcon />
+              <Typography variant="h6">{userData.country}</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box display="flex" alignItems="center" gap={1}>
+              <EmailIcon />
+              <Typography variant="h6">{userData.email}</Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+      <History />
+    </Box>
+    
   );
 };
 

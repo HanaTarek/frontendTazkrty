@@ -1,12 +1,10 @@
 /*  */
 
 .history-container {
-    max-width: 800px;
+    max-width: 80%;
     margin: 40px auto;
     padding: 20px;
-    background: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
   
@@ -31,7 +29,7 @@
   }
   
   .history-table th {
-    background: rgb(255,198,167);
+    background: rgb(255, 205, 178);
     color: black;
   }
   

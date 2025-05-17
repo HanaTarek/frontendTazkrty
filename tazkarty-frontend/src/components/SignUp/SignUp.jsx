@@ -1,28 +1,29 @@
-import './SignUp.css';
 import React, { useState } from 'react';
+import './SignUp.css';
 import axios from 'axios';
-import EventsContainer from '../EventsContainer/EventsContainer';
-import { Input, initMDB } from "mdb-ui-kit";
-import { Link } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import IconButton from '@mui/material/IconButton';
+import EventsContainer from '../EventsContainer/EventsContainer';
+import {
+  TextField,
+  Button,
+  Grid,
+  ToggleButtonGroup,
+  ToggleButton,
+  Box,
+  Typography,
+  Card,
+  CardContent,
+} from '@mui/material';
+import Select from 'react-select';
 
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
-  initMDB({ Input });
-  const [username, Setusername] = useState(""); 
-  const [email, Setemail] = useState(""); 
-  const [password, Setpassword] = useState(""); 
-  const [password2, Setpassword2] = useState("");
-  const [role, Setrole] = useState("user"); 
-
-  const { register, formState: { errors }, handleSubmit } = useForm();
-
-  const handleRoleChange = (e) => {
-    Setrole(e.target.value);
-  }
 
   const handleBackgroundClick = (e) => {
     const card = document.querySelector('.card');
@@ -30,6 +31,30 @@ const SignUp = () => {
       navigate('/');
     }
   }
+
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [gender, setGender] = useState('');
+  const [role, setRole] = useState('');
+  const [country, setCountry] = useState('');
+
+  const countries = [
+    { label: 'Egypt', value: 'egypt' },
+    { label: 'USA', value: 'usa' },
+    { label: 'Canada', value: 'canada' },
+    // Add more as needed
+  ];
+
+  const handleGenderChange = (e, newGender) => {
+    if (newGender !== null) setGender(newGender);
+  };
+
+  const handleRoleChange = (e, newRole) => {
+    if (newRole !== null) setRole(newRole);
+  };
 
   const onSubmit = async (e) => {
     if (Object.keys(errors).length > 0) {
@@ -41,196 +66,251 @@ const SignUp = () => {
       email: email,
       password: password,
       password2: password2,
-      role: role
+      role: role,
+      phone_number: phoneNumber,
+      gender: gender,
+      country: country
     }
     try {
       console.log("Data being sent:", DataToSend);
       const response = await axios.post('http://127.0.0.1:8000/users/register/', DataToSend, { headers: {'Content-Type': 'application/json' }});
       console.log('Registration successful:', response.data);
-      Setusername('');
-      Setemail('');
-      Setpassword('');
-      Setpassword2('');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setPassword2('');
+      setPhoneNumber('');
+      setGender('');
+      setCountry('');
       navigate('/Signin');
     } catch (error) {
       console.error('Registration failed:', error.response.data);
     }
   };
 
+
   return (
     <div>
       <EventsContainer/>
       <section onClick={handleBackgroundClick}>
-        <div className="mask d-flex align-items-center h-100 gradient-custom-3">
-          <div className="container h-100">
-            <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col-12 col-md-9 col-lg-7 col-xl-5">
-                <div className="card" style={{ borderRadius: "15px" }}>
-                  <div className="card-body p-2">
-                    <h2 className="text-center mb-5 modal-title" id="uniqueFlipModalLabel">
-                      Create an account
-                    </h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="mb-4">
-                        <div data-mdb-input-init className="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example1cg"
-                            className="form-control form-control-lg"
-                            name='userName'
-                            {
-                              ...register("username", {
-                                required: "User name is required",
-                                pattern: {
-                                  value: /^[a-zA-Z0-9@./+\-_]+$/,
-                                  message: "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters."
-                                }
-                              })
-                            }
-                            value={username || ""}
-                            placeholder="User Name" 
-                            required=""
-                            onChange={(e) => { Setusername(e.target.value) }}
-                          />
-                          <label className="form-label" htmlFor="form3Example1cg">
-                            Your Name
-                          </label>
-                        </div>
-                        {errors.username && <p className="error-message">{errors.username.message}</p>}
-                      </div>
 
-                      <div className="mb-4">
-                        <div data-mdb-input-init className="form-outline">
-                          <input
-                            type='email'
-                            name='email'
-                            value={email || ""}
-                            placeholder="Email" 
-                            {
-                              ...register("email", {
-                                required: "Email is required",
-                                pattern: {
-                                  value: /^\S+@\S+\.com$/i,
-                                  message: "Enter a valid email"
-                                }
-                              })
-                            }
-                            onChange={(e) => { Setemail(e.target.value) }}
-                            id="form3Example3cg"
-                            className="form-control form-control-lg"
-                          />
-                          <label className="form-label" htmlFor="form3Example3cg">
-                            Your Email
-                          </label>
-                        </div>
-                        {errors.email && <p className="error-message">{errors.email.message}</p>}
-                      </div>
+    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" padding={4}>
+      <Card className="card" sx={{ maxWidth: 600, width: '100%', p: 3 }}>
+        <CardContent>
+          <Typography variant="h5" align="center" gutterBottom>
+            Create an Account
+          </Typography>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Name"
+                  value={username}
+                  {...register('username', {
+                    required: 'User name is required',
+                    pattern: {
+                      value: /^[a-zA-Z0-9@./+\-_]+$/,
+                      message:
+                        'Only letters, numbers, and @/./+/-/_ characters are allowed',
+                    },
+                  })}
+                  onChange={(e) => setUsername(e.target.value)}
+                  error={!!errors.username}
+                  helperText={errors.username?.message}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Phone Number"
+                  value={phoneNumber}
+                  {...register('phone_number', {
+                    required: 'Phone number is required',
+                    pattern: {
+                      value: /^[0-9()+\-\s]+$/,
+                      message: 'Enter a valid phone number',
+                    },
+                  })}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  error={!!errors.phone_number}
+                  helperText={errors.phone_number?.message}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Email"
+                  value={email}
+                  {...register('email', {
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^\S+@\S+\.com$/i,
+                      message: 'Enter a valid email',
+                    },
+                  })}
+                  onChange={(e) => setEmail(e.target.value)}
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <ToggleButtonGroup
+                  value={gender}
+                  exclusive
+                  onChange={handleGenderChange}
+                  fullWidth
+                >
+                  <ToggleButton
+                    value="male"
+                    sx={{
+                      flex: 1,
+                      '&.Mui-selected': {
+                        backgroundColor: '#ffc6a7',
+                        color: 'grey',
+                      },
+                      '&.Mui-selected:hover': {
+                        backgroundColor: '#fbc0a7',
+                      },
+                    }}
+                  >
+                    Male
+                  </ToggleButton>
+                  <ToggleButton
+                    value="female"
+                    sx={{
+                      flex: 1,
+                      '&.Mui-selected': {
+                        backgroundColor: '#ffc6a7',
+                        color: 'grey',
+                      },
+                      '&.Mui-selected:hover': {
+                        backgroundColor: '#fbc0a7',
+                      },
+                    }}
+                  >
+                    Female
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
 
-                      <div className="mb-4">
-                        <div data-mdb-input-init className="form-outline">
-                          <input
-                            type='password'
-                            name='password'
-                            value={password || ""}
-                            placeholder="Password" 
-                            {...register("password", {
-                              required: "Password is required",
-                              minLength: {
-                                value: 8,
-                                message: "Password must be at least 8 characters"
-                              },
-                              pattern: {
-                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).+$/,
-                                message: "Password must contain uppercase, lowercase, number, and special character"
-                              }
-                            })}
-                            onChange={(e) => { Setpassword(e.target.value) }}
-                            id="form3Example4cg"
-                            className="form-control form-control-lg"
-                          />
-                          <label className="form-label" htmlFor="form3Example4cg">
-                            Password
-                          </label>
-                        </div>
-                        {errors.password && <p className="error-message">{errors.password.message}</p>}
-                      </div>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  value={password}
+                  {...register('password', {
+                    required: 'Password is required',
+                    minLength: {
+                      value: 8,
+                      message: 'At least 8 characters required',
+                    },
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).+$/,
+                      message:
+                        'Must include uppercase, lowercase, number & special char',
+                    },
+                  })}
+                  onChange={(e) => setPassword(e.target.value)}
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Confirm Password"
+                  type="password"
+                  value={password2}
+                  {...register('password2', {
+                    required: 'Confirm password is required',
+                    validate: (value) =>
+                      value === password || 'Passwords do not match',
+                  })}
+                  onChange={(e) => setPassword2(e.target.value)}
+                  error={!!errors.password2}
+                  helperText={errors.password2?.message}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Select
+                  options={countries}
+                  value={countries.find((c) => c.value === country)}
+                  onChange={(option) => setCountry(option?.value || '')}
+                  placeholder="Select Country"
+                />
+              </Grid>
+                <Grid item xs={12}>
+                  <ToggleButtonGroup
+                    value={role}
+                    exclusive
+                    onChange={handleRoleChange}
+                    fullWidth
+                  >
+                    <ToggleButton
+                      value="user"
+                      sx={{
+                        flex: 1,
+                        '&.Mui-selected': {
+                          backgroundColor: '#ffc6a7',
+                          color: 'grey',
+                        },
+                        '&.Mui-selected:hover': {
+                          backgroundColor: '#fbc0a7',
+                        },
+                      }}
+                    >
+                      User
+                    </ToggleButton>
+                    <ToggleButton
+                      value="organization"
+                      sx={{
+                        flex: 1,
+                        '&.Mui-selected': {
+                          backgroundColor: '#ffc6a7',
+                          color: 'grey',
+                        },
+                        '&.Mui-selected:hover': {
+                          backgroundColor: '#fbc0a7',
+                        },
+                      }}
+                    >
+                      Organization
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </Grid>
 
-                      <div className="mb-4">
-                        <div data-mdb-input-init className="form-outline">
-                          <input
-                            type='password'
-                            name='password2'
-                            value={password2 || ""}
-                            placeholder="Confirm Password" 
-                            {...register("password2", {
-                              required: "Confirm password is required",
-                              validate: value => value === password || "Passwords do not match"
-                            })}
-                            onChange={(e) => { Setpassword2(e.target.value) }}
-                            id="form3Example4cdg"
-                            className="form-control form-control-lg"
-                          />
-                          <label className="form-label" htmlFor="form3Example4cdg">
-                            Repeat your password
-                          </label>
-                        </div>
-                        {errors.password2 && <p className="error-message">{errors.password2.message}</p>}
-                      </div>
+              <Grid item xs={12}>
+                <Button
+                        type="submit"
+                        variant="contained"
+                        fullWidth
+                        sx={{
+                          backgroundColor: '#ffcdb2',
+                          color: 'black',
+                          '&:hover': {
+                            backgroundColor: 'ffcdb2',
+                          },
+                        }}
+                      >
+                        Register
+                      </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body2" align="center">
+                  Already have an account? <a href="../Signin" style={{ fontWeight: 'bold' }}>Login here</a>
+                </Typography>
 
-                      <div className="col-md-7 mb-2 checking">
-                        <h6 className="form-check form-check-inline role">Role: </h6>
-                        <div className="form-check form-check-inline">
-                          <input 
-                            className="form-check-input" 
-                            type="radio" 
-                            id="userradio" 
-                            name="role"
-                            value="user"
-                            checked={role === 'user'}
-                            onChange={handleRoleChange} />
-                          <label className="form-check-label" htmlFor="userradio">User</label>
-                        </div>
-
-                        <div className="form-check form-check-inline">
-                          <input 
-                            className="form-check-input" 
-                            type="radio" 
-                            id="maleGender"
-                            name="role"
-                            value="organization"
-                            checked={role === 'organization'}
-                            onChange={handleRoleChange} />
-                          <label className="form-check-label" htmlFor="maleGender">Organization</label>
-                        </div>
-                      </div>
-
-                      <div className="d-flex justify-content-center">
-                        <button
-                          type="submit"
-                          data-mdb-button-init
-                          data-mdb-ripple-init
-                          className="btn btn-success btn-block btn-lg text-body"
-                        >
-                          Register
-                        </button>
-                      </div>
-
-                      <p className="text-center text-muted mt-5 mb-0">
-                        Have already an account?{" "}
-                        <a href="../Signin" className="fw-bold text-body">
-                          <u>Login here</u>
-                        </a>
-                      </p>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </Grid>
+            </Grid>
+          </form>
+        </CardContent>
+      </Card>
+    </Box>
+    </section>
     </div>
   );
-}
+};
 
 export default SignUp;
